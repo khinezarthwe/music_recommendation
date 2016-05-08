@@ -17,4 +17,9 @@ class PagesControllerTest < ActionController::TestCase
     assert_response :success
     assert_select "title","About| Music Recommendation"
   end
+  test "should get contact" do
+    get :contact
+    assert_response :success
+    assert_select "title", "Contact| Music Recommendation"
+  end
 end
