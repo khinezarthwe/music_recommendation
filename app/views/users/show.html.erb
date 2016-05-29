@@ -22,4 +22,13 @@
   </table>
   </section>
   </aside>
+  <div class="col-md-8">
+    <% if @user.songs.any? %>
+    <h3>Songs (<%= @user.songs.count %>)</h3>
+    <ol class= "songs">
+      <%= render @songs %>
+    </ol>
+    <%= will_paginate @songs %>
+    <% end %>
+  </div>
 </div>

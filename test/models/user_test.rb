@@ -58,4 +58,12 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember,'')
   end
+
+  test "associated songs should be destroyed" do
+    @user.save
+    @user.songs.create!(topic_num:1,artist_name:"Justin Biber",song_name:"Love Yourself",lyric:"For the time")
+    assert_difference 'Song.count',-1 do
+      @user.destroy
+    end
+  end
 end

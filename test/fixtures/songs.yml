@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+songone:
+  topic_num: 1
+  artist_name: "Justin biber"
+  song_name: "love yourself"
+  lyric: "for the time that you will more than that"
+  created_at: <%= 10.minutes.ago %>
+  user: khinezar
+  
+
+songtwo:
+  topic_num: 1
+  artist_name: "Adele"
+  song_name: "Hello"
+  lyric: "Hello it me"
+  created_at: <%= Time.zone.now %>
+  user: khinezar
+
+<% 30.times do |n| %>
+song_<%= n %>:
+  topic_num: 1
+  song_name: <%= Faker::Lorem.sentence(5) %>
+  artist_name: <%= Faker::Lorem.sentence(5) %>
+  lyric: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: khinezar
+<% end %>
+ 

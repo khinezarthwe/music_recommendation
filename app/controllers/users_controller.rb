@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+    @songs = @user.songs.paginate(page: params[:page])
   end
   def create
     @user = User.new(user_params)
