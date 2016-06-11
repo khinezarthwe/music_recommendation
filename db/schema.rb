@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525143142) do
+ActiveRecord::Schema.define(version: 20160610113453) do
+
+  create_table "allsongs", force: :cascade do |t|
+    t.string   "lastfm_userid"
+    t.datetime "timestamp"
+    t.string   "artist_id"
+    t.string   "artist_name"
+    t.string   "traid"
+    t.string   "trackname"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "songs", force: :cascade do |t|
     t.integer  "topic_num"
@@ -21,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160525143142) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "traid"
   end
 
   add_index "songs", ["user_id", "created_at"], name: "index_songs_on_user_id_and_created_at"

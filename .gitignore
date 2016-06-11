@@ -15,3 +15,8 @@
 /log/*
 !/log/.keep
 /tmp
+
+/db/lyricdata
+/db/allrawdata.csv
+/db/topic_10withlda.csv
+**/.DS_Store

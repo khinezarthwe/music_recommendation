@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lastfm_userid: MyString
+  timestamp: 2016-06-10 19:50:55
+  artist_id: MyString
+  artist_name: MyString
+  traid: MyString
+  trackname: MyString
+
+two:
+  lastfm_userid: MyString
+  timestamp: 2016-06-10 19:50:55
+  artist_id: MyString
+  artist_name: MyString
+  traid: MyString
+  trackname: MyString
