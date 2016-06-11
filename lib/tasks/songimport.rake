@@ -29,16 +29,18 @@ namespace :songimport do
 
 
   task :artist_name_and_song_name => :environment do
-    require 'csv'
-    alltrack = Song.all
+   # uniquesong =[]
+    artist_name = 4
+    song_name = 6
+    unique_track_id = Allsong.select(:traid).distinct
+    p unique_track_id.to_a
+
+    #unique_track_id.each do |traid|
+     # songdata = Allsong.find_by_traid(traid)
+     # p songdata
+      #uniquesong.push(traid,songdata[artist_name],songdata[song_name])
+    #end
+    #p uniquesong.count
     
-    #alltrack.each do  |t_id|
-      #if Allsong.traid == t_id 
-      #    artist_name = Allsong.artist_name
-      #    song_name = Allsong.song_name
-      #    Song.update(artist_name: artist_name,
-      #                song_name: song_name)
-      #  end
-      #end
     end
   end

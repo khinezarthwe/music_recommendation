@@ -19,4 +19,21 @@ namespace :import do
                      trackname: trackname)
     end
   end
+
+  task :fastdata => :environment do
+    CONN = ActiveRecord::Base.connection
+    TIMES = 539466
+    data_arr =[]
+    require 'csv'
+    CSV.foreach('db/allrawdata.csv') do |row|
+      lastfm_userid   = row[0]
+      timestamp     = row[1]
+      artist_id     = row[2]
+      artist_name   = row[3]
+      traid     = row[4]
+      trackname   = row[5]
+      data_arr.push(lastfm_userid,timestamp,artist_id,artist_name,traid,trackname)
+    end
+    TIMES.times {CONN.exeute "INSERT INTO Allsong"}
+  end
 end
