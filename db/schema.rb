@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610113453) do
+ActiveRecord::Schema.define(version: 20160611092917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20160610113453) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "original_songs", force: :cascade do |t|
+    t.string   "traid"
+    t.string   "track_name"
+    t.string   "artist_id"
+    t.string   "artist_name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "songs", force: :cascade do |t|
     t.integer  "topic_num"
     t.text     "artist_name"
@@ -36,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160610113453) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "traid"
+    t.string   "artist_id"
   end
 
   add_index "songs", ["user_id", "created_at"], name: "index_songs_on_user_id_and_created_at", using: :btree

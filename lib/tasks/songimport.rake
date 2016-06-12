@@ -1,5 +1,4 @@
 # importing songs data as an admin
-
 namespace :songimport do
   desc "imports data from a raw data table"
   task :data => :environment do
@@ -22,25 +21,22 @@ namespace :songimport do
   end
 
   task :topic_num => :environment do
+    desc "Selecting topic number"
     require 'csv'
-
-  end
-
-
-
-  task :artist_name_and_song_name => :environment do
-   # uniquesong =[]
-    artist_name = 4
-    song_name = 6
-    unique_track_id = Allsong.select(:traid).distinct
-    p unique_track_id.to_a
-
-    #unique_track_id.each do |traid|
-     # songdata = Allsong.find_by_traid(traid)
-     # p songdata
-      #uniquesong.push(traid,songdata[artist_name],songdata[song_name])
-    #end
-    #p uniquesong.count
-    
+    hasharr = {}
+    data = CSV.read("db/topic_10withlda.csv", headers: true, converters: :numeric)
+    headers = data.headers 
+    data.each do|row|
+      
+      hash_arr = row.to_h
+      songid = hash_arr["Song ID"]
+      hash_arr.delete("Song ID")
+      index = hash_arr.key(hash_arr.values.max)
+      topic_number = Song.find_by_traid(songid)
+      topic_number.topic_num = index
+      topic_number.save!
     end
+
   end
+
+end
