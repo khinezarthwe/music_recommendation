@@ -16,7 +16,12 @@ default: &default
   port: 5432
 
 development:
-  <<: *default
+  development:
+  adapter: postgresql
+  host: localhost
+  username: kzt
+  database: kzt
+  #<<: *default
   #database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
