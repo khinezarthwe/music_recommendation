@@ -17,6 +17,7 @@ class SongsController < ApplicationController
 		flash[:success] = "Song deleted"
 		redirect_to request.referrer || root_url
 	end
+
 	private 
 	def song_params
 		params.require(:song).permit(:topic_num,:artist_name,:song_name,:lyric)
