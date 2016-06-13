@@ -1,7 +1,7 @@
 <li id="song-<%=song.id %>">
 <%= link_to gravatar_for(song.user),song.user %>
 <span class="user"><%= link_to song.user.name,song.user %></span>
-<span class="content"><%= song.song_name %></span>
+<span class="content"><%= link_to song.song_name,song %></span>
 <span class="artist"><%= song.artist_name %> </span>
 <span class="timestamp">
 	Posted <%= time_ago_in_words(song.created_at) %> ago.

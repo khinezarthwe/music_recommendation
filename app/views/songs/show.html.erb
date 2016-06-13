@@ -1,0 +1,12 @@
+<% provide(:title, @song.song_name) %>
+
+<h1><%= @song.song_name %></h1>
+<h2><span class="artist"> Singer_name   : <%= @song.artist_name %></span></h2>
+<h2><span class="user">Posted by :<%= link_to @song.user.name,@song.user %></span></h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <%= @song.lyric %>	
+</div>
+</div>
+

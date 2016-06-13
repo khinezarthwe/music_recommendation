@@ -18,6 +18,10 @@ class SongsController < ApplicationController
 		redirect_to request.referrer || root_url
 	end
 
+	def show
+		@song = Song.find(params[:id])
+	end
+
 	private 
 	def song_params
 		params.require(:song).permit(:topic_num,:artist_name,:song_name,:lyric)
