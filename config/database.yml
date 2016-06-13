@@ -16,11 +16,15 @@ default: &default
   port: 5432
 
 development:
-  development:
+  pool: 5
+  timeout: 5000
   adapter: postgresql
-  host: localhost
-  username: kzt
+  encoding: unicode
   database: kzt
+  username: kzt
+  password: khinezar9092
+  host: localhost
+  port: 5432
   #<<: *default
   #database: db/development.sqlite3
 
