@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   get 'users/new'
+  get 'search/' => 'songs#find'
 
   root 'pages#home'
   get'help' => 'pages#help'

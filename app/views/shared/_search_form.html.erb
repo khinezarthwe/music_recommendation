@@ -1,11 +1,7 @@
 
 <div class="col-md-8">
-<%= form_tag songs_path, :method => 'get' do %>
-	<%= text_field_tag :search, params[:search], placeholder: "Search Songs",:enforce_utf8 => false %>
-	<%= submit_tag "Search", :name => nil %>
+<%= form_tag('/search', :method => 'get', id:"search-form",:enforce_utf8 => false) do %>
+    <%= text_field_tag :search,params[:search], placeholder: "Search Songs" %>
+    <%= submit_tag "Search", :name => nil %>
 <% end %>
 </div>
-
-
-
-

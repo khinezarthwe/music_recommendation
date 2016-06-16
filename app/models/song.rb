@@ -5,4 +5,8 @@ class Song < ActiveRecord::Base
   validates :artist_name, presence: true,length: {maximum: 100 }
   validates :song_name, presence: true,length: {maximum: 100 }
   validates :lyric, presence: true,length: {maximum: 10000 }
+
+  def self.search(search)
+		where("artist_name LIKE ? OR song_name LIKE ? OR lyric LIKE ?","%#{search}%","%#{search}%","%#{search}%")
+	end
 end

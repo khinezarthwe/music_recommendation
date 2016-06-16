@@ -1,0 +1,15 @@
+<% provide(:title,"Search Page") %>
+  <div class = "row">
+  <div class= "col-md-8">
+
+  <h3>The search result for " <%= params[:search] %> " <br> 
+  Total number of songs is (<%= @songs.count %>)</h3>
+  <section class = "user_info">
+  <ol class= "songs">
+      <%= render @songs %> 
+  </ol>
+  </section> 
+  </div>
+  </div>
+
+
