@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
   before_action :logged_in_user, only:[:create,:destroy]
-  before_action :correct_user, only: :destroy
+  before_action :correct_user, only: :destroy 
+  impressionist :actions => [:show]
 
   def index
     @songs = Song.paginate(page: params[:page])
@@ -29,6 +30,7 @@ class SongsController < ApplicationController
   def find
     if params[:search]
       @songs = Song.search(params[:search]).order("created_at DESC")
+      @count = @songs.paginate(page: params[:page])
     else
       @songs = Song.all.order('created_at DESC')
     end
