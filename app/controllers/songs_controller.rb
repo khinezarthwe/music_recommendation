@@ -9,9 +9,11 @@ class SongsController < ApplicationController
 
   def create
     @song = current_user.songs.build(song_params)
+    LdaWorker.perform_async(@song)
     if @song.save
       flash[:success] = "Song created"
       redirect_to root_url
+
     else
       render 'pages/home'
     end

@@ -1,19 +1,6 @@
-require 'csv'
-require 'lda-ruby'
-class Song < ActiveRecord::Base
-  belongs_to :user
-  default_scope -> {order(created_at: :desc)}
-  validates :user_id, presence: true
-  validates :artist_name, presence: true,length: {maximum: 100 }
-  validates :song_name, presence: true,length: {maximum: 100 }
-  validates :lyric, presence: true,length: {maximum: 10000 }
-  is_impressionable
-
-  def self.search(search)
-    where("artist_name LIKE ? OR song_name LIKE ? OR lyric LIKE ?","%#{search}%","%#{search}%","%#{search}%")
-  end
-
-  def traingwithlda
+class LdaWorker
+  include Sidekiq::Worker
+  def perform(song)
     stop_word_list = CSV.read("db/stop_word_list.csv")
     topic_number = []
     id = []
@@ -35,12 +22,12 @@ class Song < ActiveRecord::Base
       if number[0].nan?
         topic_number << 1
       else
-      topic_num = number.max #choosing maxmimun number for item
-      topic_num = number.index(topic_num) #topic number.......
-      topic_number << topic_num + 1 
+        topic_num = number.max #choosing maxmimun number for item
+        topic_num = number.index(topic_num) #topic number.......
+        topic_number << topic_num + 1
       end# arrary index start from 0 so I add 1 for topic number
     end
-    #selecting id 
+    #selecting id
     datalyric.each do |i|
       id << i.id
     end
@@ -51,5 +38,6 @@ class Song < ActiveRecord::Base
       topic_number_update.topic_num = topic_update[1] # values as data
       topic_number_update.save!
     end
+
   end
 end

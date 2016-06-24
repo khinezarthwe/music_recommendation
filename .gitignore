@@ -19,4 +19,6 @@
 /db/lyricdata
 /db/allrawdata.csv
 /db/topic_10withlda.csv
+/db/stop_word_list_bylda.txt
+/db/stop_word_list.csv
 **/.DS_Store
