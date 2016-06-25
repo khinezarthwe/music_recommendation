@@ -15,7 +15,8 @@ gem 'jquery-rails', '4.0.3'
 gem 'turbolinks',   '2.3.0'
 gem 'jbuilder',     '2.2.3'
 gem 'lda-ruby',     '0.3.9'
-gem 'sidekiq',      '4.1.2'  
+gem 'sidekiq',      '4.1.2'
+gem 'foreman',      '0.82.0' 
 gem 'sdoc',         '0.4.0', group: :doc
 
 group :development, :test do
