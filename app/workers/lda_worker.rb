@@ -38,6 +38,5 @@ class LdaWorker
       topic_number_update.topic_num = topic_update[1] # values as data
       topic_number_update.save!
     end
-
   end
 end
