@@ -1,13 +1,44 @@
 <% provide(:title,"About") %>
 <h1>About me</h1>
 <p>
-	I am Khine Zar Thwe From Nagaoka University of Technology.
-	I write this Website for my research.
-	My research is about Music Recommendation System for Every User.Not same with other music recommendation, when I made a recommendation, I use the song lyrics. Using the Latene Dirichlet Allocation and using the song lyrics , I can get the differnet user groups. Based on these groups I made a recommendation for user. 
-	Another idea is when I make a group, I omit the unactive user. unactive user means a user who is the member of this website but he or she is no longer use for this website. Such kind of case, I omit these users as a noise for my system make a recommendation for user. By doing this my recommendtion system more accurate than the other recommendation system. 
-	For that please help me to test this recommendation system.
-	You can easily register the system and listen music and searching lyric after that I can make a recommendation for you. :D :D :D 
+	Music Recommendation System Based on Lyrics
 
-	Wish you happy day!
-	Khine Zar
+Khine Zar Thwe
+Management and Information System Engineering
+Nagaoka University of Technology
+Nagaoka, Japan
+s155069@stn.nagaokaut.ac.jp
+YUKAWA Takashi
+Management and Information System Engineering 
+Nagaoka University of Technology
+Nagaoka, Japan 
+yukawa@vos.nagaokaut.ac.jp
+
+Abstract—Since the last quarter-century, there are increasing the research of recommendation system to solve the problem of relation between the desired information and user requirements. In this study, we focus on the recommendation system development on the domain of Music. We investigate user behavior of song listening actions for recommendation and analyzing each song latent relationship by the Latent Dirichlet Allocation (LDA). Modelling topic analysis with songs lyric, combine with user behavior and we develop with one of the recommendation system, User-User Collaborative Filtering. We attempt to reduce the cold start problem of User-User Collaborative Filtering by lyric analysis with LDA. To improve the recommendation engine, we remove the old user action as a noise. 
+Keywords—Recommendar Systetm, latent topics analysis, Lastent Dirichlet Allocation,Collaborative Filtering; 
+1.Introduction 
+Today world, due to the development of technology, more and more information is distributed and can easily search on the internet. However, the users are facing the problems of mismatching between the retrieve information and desired information. To provide the users’ need, get more and more profit for themselves, the recommendation system is widely used in recent years. Example; amazon recommends product item for customers, youtube recommends video for users by same categories. In the recommendation system algorithm, there are basically three types; Collaborative, Content-based and Knowledge-based System. In this work, we emphasize on Collaborative Filtering(CF) of User-based Collaborative System. Although CF can provide serendi-pity of results, there has been cold start problems for new item or user. In our proposed system, we reduce the cold start problem grouping lyrics of LDA. To be improved recommendation engine by removing old history noise. In our work, we use last.fm 1K dataset [1] for selecting the popular songs. We choose popular 3800 songs from these dataset and for lyrics of each songs we crawl by using “lyricfy” [2] from two songs lyric website.
+2.Lyric analysis and Recommendation Model
+Some research on Music Recommendation focus on the song rating, genre and melody of songs. In our approach, we use Latent Dirichlet Allocation (LDA) [3] for topic analysis for each song lyric. Song lyric has meaning to describe their emotion. So we use LDA to link the latent relationship of song. Based on the result of average log probabilities for each song, we group the songs into topic group. we set the number of topics to 10. Analyzing the lyric, we remove not only the stop-word list from songs but also other additional words. (e.g, melody word e.g: Oh, Ah, Oo, Na, Mmm). LDA is unsupervised learning, hence it assigns each word to reasonable topic autonomously. When the user uploads the new song, we can know that it is related which topic by LDA result. We also can reduce the cold start problem of new song by doing this process 
+
+Figure: Proposed Recommendation System Design
+For the improvement of recommendation engine, we also consider removing old history noise. Old history noise means the users who doesn't use the system for a long time. Not the same with the other domain, new music are released everyday and users want new song recommendation for them. So, we regard the users’ who doesn't have activity, we consider them as a noise and when we make a recommendation, we omit these users for calculating recommendation for current user.
+3.Conclusions
+In this paper, we proposed to improve the music recommendation engine by lyrics. Although there are other way to improve the recommendation engine, we use the text information filtering to meet with user information need and to provide good recommendation to user. We will test the system with real users and plan to make evaluation with Precision and Recall. We hope our system will be more efficient and more effective for the music user by reducing cold start problem of CF algorithm by LDA latent topic analysis result.
+4.References
+www.dtic.upf.edu/ocelma/MusicRecommendationDataset/lastfm-1K
+https://github.com/javichito/Lyricfy
+David M Blei,Andrew Y.Ng Micheal I.Jordan, “Latent Dirichlet Allocation” Journal of Machine Learning Research 3 (2003) 993-1022.
+Te-Min Chang,Wen-Feng Hsiao,Yi-Ling Lin “LDA-Based Group Document Recommendation” 2014. [PACIS 2014 Proceedings].
+Michael Fell, Caroline Sporleder, “Lyric Based Analysis and Classification of Music. [25th International Conference on Computational Linguistics] Technical Paper, pp.620-631, Dublin, Ireland, August 2014
+Katayoung Farrahi, Markus Schedl, Andreu Vall, David Hauger, Marko Tkalcic, “Impact of Listening Behavior on Music Recommendation”  [2014 International Society for Music Information Retrieval]. 
+Shoto Sasaki. Kazuyoshi Yoshii, Tomoyasu Nakano, Masataka Goto,Shigeo, “Lyrics Radar, A Lyric Retrieval System Based on Latent Topics of Lyrics” [15th International Society for Music Information Retrieval Conference](ISMIR 2014)
+
+
+
+
+
+
+
+
 </p>	

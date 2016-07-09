@@ -69,6 +69,11 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+
+
+
+  
+
   private
   #convert email to all lower-case
   def downcase_email

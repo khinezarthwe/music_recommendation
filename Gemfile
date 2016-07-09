@@ -17,6 +17,8 @@ gem 'jbuilder',     '2.2.3'
 gem 'lda-ruby',     '0.3.9'
 gem 'sidekiq',      '4.1.2'
 gem 'foreman',      '0.82.0' 
+gem "hiredis",      "~> 0.6.0"
+gem "redis",        ">= 3.2.0"
 gem 'sdoc',         '0.4.0', group: :doc
 
 group :development, :test do
