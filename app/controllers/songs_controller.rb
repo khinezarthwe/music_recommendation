@@ -13,7 +13,6 @@ class SongsController < ApplicationController
     if @song.save
       flash[:success] = "Song created"
       redirect_to root_url
-
     else
       render 'pages/home'
     end
