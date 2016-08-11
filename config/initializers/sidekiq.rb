@@ -21,7 +21,7 @@ Sidekiq.configure_server do |config|
     if heroku
       p "[Sidekiq] Running on Heroku, autoscaler is used"
       chain.add(Autoscaler::Sidekiq::Server, heroku, 60) # 60 seconds timeout
-      config.redis = { url: ENV['REDIS_URL'],:size => 20 }
+      config.redis = { url: ENV['REDIS_URL'],:size => 7 }
     else
       p "[Sidekiq] Running locally, so autoscaler isn't used"
     end
