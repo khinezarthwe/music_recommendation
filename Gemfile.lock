@@ -38,6 +38,10 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.5.0)
     arel (6.0.3)
+    autoscaler (0.11.0)
+      heroku-api
+      platform-api
+      sidekiq (~> 4.0)
     bcrypt (3.1.7)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
@@ -64,6 +68,7 @@ GEM
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     erubis (2.7.0)
+    excon (0.51.0)
     execjs (2.6.0)
     faker (1.4.2)
       i18n (~> 0.5)
@@ -85,6 +90,15 @@ GEM
     guard-minitest (2.3.1)
       guard (~> 2.0)
       minitest (>= 3.0)
+    heroics (0.0.17)
+      erubis (~> 2.0)
+      excon
+      moneta
+      multi_json (>= 1.9.2)
+      netrc
+    heroku-api (0.4.2)
+      excon (~> 0.45)
+      multi_json (~> 1.8)
     hiredis (0.6.1)
     httpclient (2.8.0)
     i18n (0.7.0)
@@ -123,14 +137,18 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    moneta (0.8.0)
     multi_json (1.12.0)
     nenv (0.3.0)
+    netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
     pg (0.18.4)
+    platform-api (0.8.0)
+      heroics (~> 0.0.17)
     predictor (2.0.0)
       redis (>= 3.0.0)
     pry (0.10.3)
@@ -230,6 +248,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoscaler
   bcrypt (= 3.1.7)
   bootstrap-sass (= 3.2.0.0)
   bootstrap-will_paginate (= 0.0.10)

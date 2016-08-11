@@ -20,6 +20,7 @@ gem 'foreman',      '0.82.0'
 gem 'predictor',    '2.0'
 gem "hiredis",      "~> 0.6.0"
 gem "redis",        ">= 3.2.0"
+gem 'autoscaler'
 gem 'sdoc',         '0.4.0', group: :doc
 
 group :development, :test do
