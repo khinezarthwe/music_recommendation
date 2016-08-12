@@ -7,6 +7,7 @@ class RecommendWorker
     recommend_song = {}
     songs = Song.all
     rem_userid = User.pluck(:id)
+    #select the current user_id from impression table
     rem_userid.each do |record_id|
       hash_arr[record_id] = Impression.where(:user_id => record_id).uniq.pluck(:impressionable_id)
     end
@@ -24,9 +25,8 @@ class RecommendWorker
     end
     recommend_song = recommender.predictions_for(userid,matrix_label: :users,with_scores: true)
     recommend_song = recommend_song.first(10).to_h
-    p recommend_song
     already_member = TempRecommender.where(:user_id=>userid)
-    if already_member.nil? # create new recommend
+    if already_member.blank? # create new recommend .nil ???? .blank???
       recommend_song.each do |rem_song|
         a = TempRecommender.new(user_id:userid,song_id:rem_song[0],recommend_value:rem_song[1])
         a.save!
