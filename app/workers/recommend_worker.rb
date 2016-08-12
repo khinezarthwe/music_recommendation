@@ -24,6 +24,7 @@ class RecommendWorker
     end
     recommend_song = recommender.predictions_for(userid,matrix_label: :users,with_scores: true)
     recommend_song = recommend_song.first(10).to_h
+    p recommend_song
     already_member = TempRecommender.where(:user_id=>userid)
     if already_member.nil? # create new recommend
       recommend_song.each do |rem_song|
