@@ -19,6 +19,7 @@ gem 'sidekiq',      '4.1.2'
 gem 'foreman',      '0.82.0' 
 gem 'predictor',    '2.0'
 gem 'puma_worker_killer'
+gem 'scout_apm'
 gem "hiredis",      "~> 0.6.0"
 gem "redis",        ">= 3.2.0"
 gem 'autoscaler'
