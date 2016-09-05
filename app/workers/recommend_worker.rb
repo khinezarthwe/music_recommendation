@@ -9,6 +9,8 @@ class RecommendWorker
     rem_userid = User.pluck(:id)
     # select the current user_id from impression table
     # please modifed this code again
+
+    
     rem_userid.each do |record_id|
       hash_arr[record_id] = Impression.where(:user_id => record_id).uniq.pluck(:impressionable_id)
     end
