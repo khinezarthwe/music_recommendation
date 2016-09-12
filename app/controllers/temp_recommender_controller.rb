@@ -11,7 +11,7 @@ class TempRecommenderController < ApplicationController
       temp_recommend_song.each do |song|
         arr_song << song.song_id
       end
-      @recommend_song = Song.find(arr_song)
+      @recommend_song = Song.where(:id=>arr_song)
     end
   end
 end

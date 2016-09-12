@@ -3,16 +3,16 @@ class CourseRecommender
   input_matrix :users
   input_matrix :groups
 end
-#recommender = CourseRecommender.new
-#recommender.add_to_matrix!(:users,"user-1", ["s-1","s-3","s-4"])
-#recommender.add_to_matrix!(:users,"user-2", "s-1","s-2","s-4","s-5")
-#recommender.add_to_matrix!(:users,"user-3", "s-1","s-2","s-4","s-5")
-#recommender.add_to_matrix!(:users,"user-4", "s-1","s-2","s-3")
-#recommender.add_to_matrix!(:users,"user-5","s-6")
-#recommender.add_to_matrix!(:groups,"group-1","s-1", "s-2","s-5")
-#recommender.add_to_matrix!(:groups,"group-2","s-3","s-4","s-6")
-#recommender.similarities_for("s-1",with_scores: true)
-#recommender.predictions_for("user-1", matrix_label: :users,with_scores: true)
+# recommender = CourseRecommender.new
+# recommender.add_to_matrix(:users,"user-1", ["s-1","s-3","s-4"])
+# recommender.add_to_matrix(:users,"user-2", "s-1","s-2","s-4","s-5")
+# recommender.add_to_matrix(:users,"user-3", "s-1","s-2","s-4","s-5")
+# recommender.add_to_matrix(:users,"user-4", "s-1","s-2","s-3")
+# recommender.add_to_matrix(:users,"user-5","s-6")
+# recommender.add_to_matrix(:groups,"group-1","s-1", "s-2","s-5")
+# recommender.add_to_matrix(:groups,"group-2","s-3","s-4","s-6")
+# recommender.similarities_for("s-1",with_scores: true)
+# recommender.predictions_for("user-1", s,with_scores: true)
 
 
 
