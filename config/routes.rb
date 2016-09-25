@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'users/new'
   get 'search/' => 'songs#find'
   get 'recommend_for/' => 'temp_recommender#recommend_song'
-
+  mount Sidekiq::Monitor::Engine => '/sidekiq'
   root 'pages#home'
   get'help' => 'pages#help'
   get 'about' => 'pages#about'

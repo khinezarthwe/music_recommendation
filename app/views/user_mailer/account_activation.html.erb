@@ -1,6 +1,11 @@
 <h1>Music Recommenation System</h1>
-<p>Hi <%= @user.name %></p>
+<p>Hello <%= @user.name %></p>
 <p>
-  Welcome to Music Recommendation ! Click on the link below to active your account:
+  Welcome to Khine Zar's Music Recommendation System ! 
+  Click on the link below to active your account:
 </p>
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token, email:@user.email) %>
+<p>
+ Thanks you for your registering to my website.
+ if you have any problem contact me via admin@khinezarthwe.me
+</p>
