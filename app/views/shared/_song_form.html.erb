@@ -6,6 +6,8 @@
     <%= f.text_field :song_name, class: 'form-control' %>
     <%= f.label :video_link %>
     <%= f.text_field :video_link, class: 'form-control' %>
+    <% f.label :song_genre %>
+    <%= f.select :song_genre,['Rock','Pop','R&b','Alternative','Heavy Metal','Classical','Punk','Pop','Pap','Hip Pop']%>
  <div class = "field" >
 	<%= f.text_area :lyric , placeholder:"song lyric  .... "%>
 </div>

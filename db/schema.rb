@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806161219) do
+ActiveRecord::Schema.define(version: 20160925083504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,13 +61,28 @@ ActiveRecord::Schema.define(version: 20160806161219) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "recommenders", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "song_id"
-    t.decimal  "recommend_value"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+  create_table "sidekiq_jobs", force: :cascade do |t|
+    t.string   "jid"
+    t.string   "queue"
+    t.string   "class_name"
+    t.text     "args"
+    t.boolean  "retry"
+    t.datetime "enqueued_at"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.string   "status"
+    t.string   "name"
+    t.text     "result"
   end
+
+  add_index "sidekiq_jobs", ["class_name"], name: "index_sidekiq_jobs_on_class_name", using: :btree
+  add_index "sidekiq_jobs", ["enqueued_at"], name: "index_sidekiq_jobs_on_enqueued_at", using: :btree
+  add_index "sidekiq_jobs", ["finished_at"], name: "index_sidekiq_jobs_on_finished_at", using: :btree
+  add_index "sidekiq_jobs", ["jid"], name: "index_sidekiq_jobs_on_jid", using: :btree
+  add_index "sidekiq_jobs", ["queue"], name: "index_sidekiq_jobs_on_queue", using: :btree
+  add_index "sidekiq_jobs", ["retry"], name: "index_sidekiq_jobs_on_retry", using: :btree
+  add_index "sidekiq_jobs", ["started_at"], name: "index_sidekiq_jobs_on_started_at", using: :btree
+  add_index "sidekiq_jobs", ["status"], name: "index_sidekiq_jobs_on_status", using: :btree
 
   create_table "songs", force: :cascade do |t|
     t.integer  "topic_num"
@@ -80,6 +95,7 @@ ActiveRecord::Schema.define(version: 20160806161219) do
     t.string   "traid"
     t.string   "artist_id"
     t.string   "video_link"
+    t.string   "song_genre"
   end
 
   add_index "songs", ["user_id", "created_at"], name: "index_songs_on_user_id_and_created_at", using: :btree

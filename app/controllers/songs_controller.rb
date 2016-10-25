@@ -39,7 +39,7 @@ class SongsController < ApplicationController
 
   private
   def song_params
-    params.require(:song).permit(:topic_num,:artist_name,:song_name,:lyric,:video_link)
+    params.require(:song).permit(:topic_num,:artist_name,:song_name,:lyric,:video_link,:song_genre)
   end
   def correct_user
     @song = current_user.songs.find_by(id: params[:id])

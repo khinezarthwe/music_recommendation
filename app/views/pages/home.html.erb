@@ -2,7 +2,6 @@
 
 <% if logged_in? %>
 
-
 <div class="row">
   <aside class= "col-md-4">
     <section class = "user_info">
@@ -16,8 +15,11 @@
   <aside class="col-md-8">
    <%= render 'shared/search_form' %>
     <%= render 'shared/recommend_form' %>
+    <p><%= raw(youtube_embed('https://www.youtube.com/watch?v=oyEuk8j8imI')) %></p>
+    <p><%= raw(youtube_embed('https://www.youtube.com/watch?v=YQHsXMglC9A')) %></p>
   </aside>
 </div>
+
 <% else %>
 <div class="center jumbotron">
 
