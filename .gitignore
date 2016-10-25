@@ -21,3 +21,5 @@
 /db/topic_10withlda.csv
 /db/stop_word_list_bylda.txt
 **/.DS_Store
+config/database.yml
+config/puma.rb
