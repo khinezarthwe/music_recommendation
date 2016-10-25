@@ -13,5 +13,9 @@ class TempRecommenderController < ApplicationController
       end
       @recommend_song = Song.where(:id=>arr_song)
     end
+    respond_to do|format|
+      format.html
+      format.js
+    end
   end
 end
