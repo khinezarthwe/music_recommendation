@@ -13,6 +13,7 @@ class RecommendWorker
       hash_arr[record_id] = Impression.where(:user_id => record_id).uniq.pluck(:impressionable_id)
     end
     recommender = CourseRecommender.new
+    recommender.clean!
     hash_arr.each do |user_num,song_id|
       recommender.add_to_matrix!(:users,user_num.to_s,song_id.map(&:to_s))
     end
@@ -21,10 +22,12 @@ class RecommendWorker
     song_group = songs_by_group.map {|k, v| v.map {|i|i.id} }
     songs_by_group = Hash[topic_num.zip song_group]
     songs_by_group.each do |k,v|
-      recommender.add_to_matrix!(:groups,k.to_s,v.to_s)
+      p 'DEBUG'
+      p k, v
+      recommender.add_to_matrix!(:groups,k.to_s,v.map(&:to_s))
     end
    recommend_song = recommender.predictions_for(userid,matrix_label: :users,with_scores: true)
-   recommend_song = recommend_song.first(10).to_h
+   recommend_song = recommend_song.first(20).to_h
     already_member = TempRecommender.where(:user_id=>userid)
     if already_member.blank? # create new recommend .nil ???? .blank???
       recommend_song.each do |rem_song|
