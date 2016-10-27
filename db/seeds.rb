@@ -14,22 +14,22 @@ User.create!(name:  "Khine Zar Thwe",
              activated:true,
              activated_at: Time.zone.now )
 
-99.times do |n|
-  name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  User.create!(name:  name,
-               email: email,
-               password:              password,
-               password_confirmation: password,
-               age: '26',
-               activated: true,
-               activated_at: Time.zone.now)
-end
-users = User.order(:created_at).take(6)
-50.times do
-  song_name = Faker::Lorem.sentence(5)
-  artist_name = Faker::Lorem.sentence(5)
-  lyric = Faker::Lorem.sentence(5)
-  users.each {|user| user.songs.create!(song_name: song_name,artist_name: artist_name,lyric: lyric)}
-end
+# 99.times do |n|
+#   name  = Faker::Name.name
+#   email = "example-#{n+1}@railstutorial.org"
+#   password = "password"
+#   User.create!(name:  name,
+#                email: email,
+#                password:              password,
+#                password_confirmation: password,
+#                age: '26',
+#                activated: true,
+#                activated_at: Time.zone.now)
+# end
+# users = User.order(:created_at).take(6)
+# 50.times do
+#   song_name = Faker::Lorem.sentence(5)
+#   artist_name = Faker::Lorem.sentence(5)
+#   lyric = Faker::Lorem.sentence(5)
+#   users.each {|user| user.songs.create!(song_name: song_name,artist_name: artist_name,lyric: lyric)}
+# end
