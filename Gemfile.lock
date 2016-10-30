@@ -73,6 +73,8 @@ GEM
     faker (1.4.2)
       i18n (~> 0.5)
     ffi (1.9.10)
+    figaro (1.1.1)
+      thor (~> 0.14)
     foreman (0.82.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
@@ -275,6 +277,7 @@ DEPENDENCIES
   byebug (= 3.4.0)
   coffee-rails (= 4.1.0)
   faker (= 1.4.2)
+  figaro
   foreman (= 0.82.0)
   guard-minitest (= 2.3.1)
   hiredis (~> 0.6.0)
