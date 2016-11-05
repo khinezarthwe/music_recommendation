@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
   before_action :logged_in_user, only:[:create,:destroy]
   before_action :correct_user, only: :destroy 
-  impressionist :actions => [:show]
+  impressionist :actions => [:show,:create]
 
   def index
     @songs = Song.paginate(page: params[:page])
