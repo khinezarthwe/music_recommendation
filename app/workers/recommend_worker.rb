@@ -1,4 +1,6 @@
+#combine two methods into one but doesn't use in the system.
 require 'myrecommender'
+require 'genre_recommender'
 class RecommendWorker
   include Sidekiq::Worker
   def perform(userid)
@@ -15,9 +17,9 @@ class RecommendWorker
     end
     c_recommender = CourseRecommender.new
     g_recommender = GenreRecommender.new
-    g_recommender.clean!
+    c_recommender.clean!
     hash_arr.each do |user_num,song_id|
-      c_recommender.add_to_matrix!(:users , user_num.to_s, song_id.map(&:to_s))
+      c_recommender.add_to_matrix!(:users ,user_num.to_s, song_id.map(&:to_s))
       g_recommender.add_to_matrix!(:gusers, user_num.to_s, song_id.map(&:to_s))
     end
     songs_by_topic = songs.group_by{ |s| s.topic_num  }
@@ -61,8 +63,10 @@ class RecommendWorker
       a = GenreBasedRecommendation.new(user_id:userid,song_id:rem_song[0],recommend_value:rem_song[1])
       a.save!
     end
-
+    p topic_recommendations
+    p genre_recommendations
   end
   #recommender.add_to_matrix!(:groups,"group-1","s-1", "s-2","s-5")
   #recommender.predictions_for("user-1", matrix_label: :users,with_scores: true)
-end
+ end
+

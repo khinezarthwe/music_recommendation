@@ -4,7 +4,12 @@ class TempRecommenderController < ApplicationController
   def recommend_song
     arr_songs = []
     genre_songs = []
-    RecommendWorker.perform_async(current_user.id)
+    a = TopicModelWorker.new
+    a.perform(current_user.id)
+    #TopicModelWorker.perform_async(current_user.id)
+    b = GenreBasedRecommendWorker.new
+    b.perform(current_user.id)
+    #GenreBasedRecommendWorker.perform_async(current_user.id)
     temp_recommend_song = TempRecommender.where(:user_id=>current_user.id)
     if temp_recommend_song.nil?
       @recommend_song = []

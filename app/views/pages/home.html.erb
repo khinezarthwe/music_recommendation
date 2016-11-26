@@ -4,9 +4,12 @@
 
 <div class="row">
   <section class= "col-md-9">
+  <section class="col-md-6">
     <section class = "user_info">
       <%= render 'shared/user_info'%>
     </section>
+  </section>
+    
     
   </section>
   <section class="col-md-3">
@@ -40,8 +43,15 @@
 </div>
 <% end %>
 <div class="row">
+  <br>
+</div>
+<div class="row">
   <aside class="col-md-12">
-    <%= render 'shared/search_form' %>
+  <%= render 'shared/search_form' %>
+  </aside>
+</div>
+<div class="row">
+  <aside class="col-md-12">
     <%= render 'shared/recommend_form' %>
   </aside>
 </div>

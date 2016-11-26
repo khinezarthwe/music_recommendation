@@ -27,20 +27,22 @@ class GenreBasedRecommendWorker
     end
     recommend_song = recommender.predictions_for(userid, matrix_label: :gusers, with_scores: true)
     recommend_song = recommend_song.first(20).to_h
-    already_member = GenreBasedRecommendation.where(:user_id=>userid)
-    if already_member.blank? # create new recommend .nil ???? .blank???
-      recommend_song.each do |rem_song|
-        a = GenreBasedRecommendation.new(user_id:userid,song_id:rem_song[0],recommend_value:rem_song[1])
-        a.save!
-      end
-    else
-      #save the new one and delete the old one
-      GenreBasedRecommendation.where(:user_id=>userid).delete_all
-      recommend_song.each do |rem_song|
-        a = GenreBasedRecommendation.new(user_id:userid,song_id:rem_song[0],recommend_value:rem_song[1])
-        a.save!
-      end
+    existing_genre_recommendations = GenreBasedRecommendation.where(:user_id=>userid)
+    # already_member = GenreBasedRecommendation.where(:user_id=>userid)
+    # if already_member.blank? # create new recommend .nil ???? .blank???
+    #   recommend_song.each do |rem_song|
+    #     a = GenreBasedRecommendation.new(user_id:userid,song_id:rem_song[0],recommend_value:rem_song[1])
+    #     a.save!
+    #   end
+    # else
+    #save the new one and delete the old one
+    #GenreBasedRecommendation.where(:user_id=>userid).delete_all
+    GenreBasedRecommendation.where(:user_id=>userid).delete_all unless existing_genre_recommendations.empty?
+    recommend_song.each do |rem_song|
+      a = GenreBasedRecommendation.new(user_id:userid,song_id:rem_song[0],recommend_value:rem_song[1])
+      a.save!
     end
+    # end
   end
   #recommender.add_to_matrix!(:groups,"group-1","s-1", "s-2","s-5")
   #recommender.predictions_for("user-1", matrix_label: :users,with_scores: true)
