@@ -15,7 +15,6 @@ end
 # recommender.predictions_for("user-1", s,with_scores: true)
 
 
-
 #SELECT DISTINCT impressionable_id FROM impressions WHERE user_id=1;
 #Impression.where(:user_id => 1).uniq.pluck(:impressionable_id)
 #User.pluck(:id)

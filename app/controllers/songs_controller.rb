@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
   before_action :logged_in_user, only:[:create,:destroy]
-  before_action :correct_user, only: :destroy 
-  impressionist :actions => [:show,:create]
+  before_action :correct_user, only: [:edit,:update]
+  impressionist :actions => [:show]
 
   def index
     @songs = Song.paginate(page: params[:page])
@@ -22,6 +22,18 @@ class SongsController < ApplicationController
     @song.destroy
     flash[:success] = "Song deleted"
     redirect_to request.referrer || root_url
+  end
+  def edit
+    @song = Song.find(params[:id])
+  end
+  def update
+     @song = Song.find(params[:id])
+    if @song.update_attributes(song_params)
+      flash[:success] = "Song Information was updated"
+      redirect_to @song
+    else
+      render 'edit'
+    end
   end
 
   def show
