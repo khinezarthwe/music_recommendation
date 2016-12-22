@@ -63,8 +63,8 @@ class RecommendWorker
       a = GenreBasedRecommendation.new(user_id:userid,song_id:rem_song[0],recommend_value:rem_song[1])
       a.save!
     end
-    p topic_recommendations
-    p genre_recommendations
+    # p topic_recommendations
+    # p genre_recommendations
   end
   #recommender.add_to_matrix!(:groups,"group-1","s-1", "s-2","s-5")
   #recommender.predictions_for("user-1", matrix_label: :users,with_scores: true)
