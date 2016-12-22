@@ -10,6 +10,9 @@ class TempRecommenderController < ApplicationController
     b = GenreBasedRecommendWorker.new
     b.perform(current_user.id)
     #GenreBasedRecommendWorker.perform_async(current_user.id)
+    c = Normalcf.new
+    c.perform(current_user.id)
+    # Adding normal collaborative filtering result
     temp_recommend_song = TempRecommender.where(:user_id=>current_user.id)
     if temp_recommend_song.nil?
       @recommend_song = []
@@ -29,6 +32,15 @@ class TempRecommenderController < ApplicationController
         genre_songs << song.song_id
       end
       @genre_recommend_song = Song.where(:id=>genre_songs)
+    end
+    nf_recommend_song = NcFrecommendation.where(:user_id=>current_user.id)
+    if nf_recommend_song.nil?
+      @nf_recommend_song = []
+    else
+      nf_recommend_song.each do |song|
+        arr_songs << song.song_id
+      end
+      @nf_recommend_song = Song.where(:id=>arr_songs)
     end
     respond_to do|format|
       format.html

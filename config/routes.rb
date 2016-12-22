@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
   get 'temp_recommender/new'
-
   get 'recommenders/new'
-
   get 'password_resets/new'
-
   get 'password_resets/edit'
-
   get 'sessions/new'
-
   get 'users/new'
   get 'search/' => 'songs#find'
   get 'recommend_for/' => 'temp_recommender#recommend_song'
