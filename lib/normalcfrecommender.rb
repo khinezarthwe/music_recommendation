@@ -2,6 +2,7 @@
 class Ncf_Recommender
   include Predictor::Base
   input_matrix :ncf_users
+  input_matrix :ncf_groups
 end
 # recommender = Ncf_Recommender.new
 # recommender.add_to_matrix!(:ncf_users,"user-1", "s-1","s-3","s-4")

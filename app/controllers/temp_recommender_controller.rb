@@ -4,6 +4,9 @@ class TempRecommenderController < ApplicationController
   def recommend_song
     arr_songs = []
     genre_songs = []
+    nf_songs = []
+    #a = RecommendWorker.new
+    #a.perform(current_user.id)
     a = TopicModelWorker.new
     a.perform(current_user.id)
     #TopicModelWorker.perform_async(current_user.id)
@@ -38,9 +41,9 @@ class TempRecommenderController < ApplicationController
       @nf_recommend_song = []
     else
       nf_recommend_song.each do |song|
-        arr_songs << song.song_id
+        nf_songs << song.song_id
       end
-      @nf_recommend_song = Song.where(:id=>arr_songs)
+      @nf_recommend_song = Song.where(:id=>nf_songs)
     end
     respond_to do|format|
       format.html
