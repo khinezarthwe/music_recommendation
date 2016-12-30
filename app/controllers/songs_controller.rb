@@ -17,7 +17,7 @@ class SongsController < ApplicationController
       render 'pages/home'
     end
   end
-
+  
   def destroy
     @song.destroy
     flash[:success] = "Song deleted"

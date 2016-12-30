@@ -11,8 +11,7 @@ class Song < ActiveRecord::Base
 
   def self.search(search)
     where("artist_name LIKE ? OR song_name LIKE ? OR lyric LIKE ?","%#{search}%","%#{search}%","%#{search}%")
-  end
-
+  end    
   def traingwithlda
     stop_word_list = CSV.read("db/stop_word_list.csv")
     topic_number = []

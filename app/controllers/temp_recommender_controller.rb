@@ -1,6 +1,10 @@
 class TempRecommenderController < ApplicationController
   def new
   end
+  def survey
+    survey_song = surveyselectdata
+    @survey_song_for_eva = Song.select('video_link').where(:id=>survey_song).pluck(:video_link)
+  end
   def recommend_song
     arr_songs = []
     genre_songs = []
@@ -50,4 +54,13 @@ class TempRecommenderController < ApplicationController
       format.js
     end
   end
+  def surveyselectdata
+    survey_song_topic = []
+    survey_song_genre = []
+    survey_song_ncf   = []
+    survey_song_topic = TempRecommender.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    survey_song_genre = GenreBasedRecommendation.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    survey_song_ncf = NcFrecommendation.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    @survey_song = survey_song_topic+survey_song_genre+survey_song_ncf
+  end 
 end

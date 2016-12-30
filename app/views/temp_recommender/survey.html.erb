@@ -1,0 +1,20 @@
+<% provide(:title, "Survey for you")%>
+
+<h3>Dear <%= current_user.name %>,
+<br></h3>
+ <h4>We select total <%= @survey_song_for_eva.count %> songs for you. Please listen our selected songs and please click agree or disagree with your opinion.
+ </h4>
+<br>
+Thanks a lot for your cooperation. 
+<br>
+Best Regards,
+<br>
+Khine Zar
+<br>
+<br>
+<% @survey_song_for_eva.each do |video| %>
+<p><%= raw(youtube_embed_small(video)) %>
+<button type="button" class="btn btn-primary">Agree</button>
+<button type="button" class="btn btn-primary">Disagree</button>
+</p>
+<% end %>
