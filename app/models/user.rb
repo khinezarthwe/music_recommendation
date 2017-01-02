@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :songs, dependent: :destroy
+  has_many :survey_actions
+  has_many :survey_songs, through: :survey_actions, foreign_key: "song_id"
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest

@@ -10,7 +10,7 @@ class Normalcf
     # select the current user_id from impression table
     # please modifed this code again
     rem_userid.each do |record_id|
-       ncf_arr[record_id] = Impression.where(:user_id => record_id).uniq.pluck(:impressionable_id)
+       ncf_arr[record_id] = Impression.where(:user_id => record_id,:action_name => 'show').uniq.pluck(:impressionable_id)
     end
     nf_recommender = Ncf_Recommender.new
     nf_recommender.clean!

@@ -1,10 +1,45 @@
 class TempRecommenderController < ApplicationController
+  
   def new
   end
+
+  def agree
+    @song_id = params[:song_id]
+    @user_id = params[:user_id]
+    @agreed = params[:agreed]
+    @survey_action = SurveyAction.new
+    @survey_action.user_id  = @user_id
+    @survey_action.song_id  = @song_id
+    @survey_action.agreed   = @agreed
+    survey_song_topic = TempRecommender.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    @survey_song_topic_hash = Hash["topic" => survey_song_topic]
+    @survey_action.topic    = @survey_song_topic_hash["topic"].include?@song_id.to_i
+    
+    survey_song_genre = GenreBasedRecommendation.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    @survey_song_genre_hash = Hash["genre" => survey_song_genre]
+    @survey_action.genre    = @survey_song_genre_hash["genre"].include?@song_id.to_i
+
+    survey_song_ncf = NcFrecommendation.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    @survey_song_ncf_hash = Hash["ncf" => survey_song_ncf]
+    @survey_action.ncf      = @survey_song_ncf_hash["ncf"].include?@song_id.to_i
+
+
+    @survey_action.save!
+    respond_to do|format|
+      format.html
+      format.js
+    end
+  end
+
   def survey
     survey_song = surveyselectdata
-    @survey_song_for_eva = Song.select('video_link').where(:id=>survey_song).pluck(:video_link)
+    @survey_song_for_eva = Song.where(:id=>survey_song).pluck(:video_link,:id)
+    respond_to do|format|
+      format.html
+      format.js 
+    end
   end
+
   def recommend_song
     arr_songs = []
     genre_songs = []
@@ -54,13 +89,20 @@ class TempRecommenderController < ApplicationController
       format.js
     end
   end
+
   def surveyselectdata
-    survey_song_topic = []
-    survey_song_genre = []
-    survey_song_ncf   = []
+    survey_song_topic = survey_song_genre = survey_song_ncf = []
+    #@survey_song_topic_hash = @survey_song_genre_hash = @survey_song_ncf_hash = {}
+
     survey_song_topic = TempRecommender.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    #@survey_song_topic_hash = Hash["topic" => survey_song_topic]
+    
     survey_song_genre = GenreBasedRecommendation.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    #@survey_song_genre_hash = Hash["genre" => survey_song_genre]
+
     survey_song_ncf = NcFrecommendation.select('song_id').where(:user_id=>current_user.id).pluck(:song_id)
+    #@survey_song_ncf_hash = Hash["ncf" => survey_song_ncf]
+
     @survey_song = survey_song_topic+survey_song_genre+survey_song_ncf
   end 
 end

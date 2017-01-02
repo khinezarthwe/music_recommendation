@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
   get 'sessions/new'
   get 'users/new'
-  get 'search/' => 'songs#find'
-  get 'survey/' => 'temp_recommender#survey'
-  get 'recommend_for/' => 'temp_recommender#recommend_song'
+  get 'search' => 'songs#find'
+  get 'survey' => 'temp_recommender#survey'
+  get 'surveydata' =>'temp_recommender#agree', as: "agree_survey"
+  get 'recommend_for' => 'temp_recommender#recommend_song'
+
   mount Sidekiq::Monitor::Engine => '/sidekiq'
   root 'pages#home' 
   get'help' => 'pages#help'

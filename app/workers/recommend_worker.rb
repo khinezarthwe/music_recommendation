@@ -13,7 +13,7 @@ class RecommendWorker
     # select the current user_id from impression table
     # please modifed this code again
     rem_userid.each do |record_id|
-      hash_arr[record_id] = Impression.where(:user_id => record_id).uniq.pluck(:impressionable_id)
+      hash_arr[record_id] = Impression.where(:user_id => record_id,:action_name => 'show').uniq.pluck(:impressionable_id)
     end
     c_recommender = CourseRecommender.new
     g_recommender = GenreRecommender.new

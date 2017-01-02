@@ -2,6 +2,8 @@ require 'csv'
 require 'lda-ruby'
 class Song < ActiveRecord::Base
   belongs_to :user
+  has_many :survey_actions
+  has_many :survey_user, through: :survey_actions, foreign_key: "user_id"
   default_scope -> {order(created_at: :desc)}
   validates :user_id, presence: true
   validates :artist_name, presence: true,length: {maximum: 100 }

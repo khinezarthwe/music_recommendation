@@ -4,17 +4,23 @@
 <br></h3>
  <h4>We select total <%= @survey_song_for_eva.count %> songs for you. Please listen our selected songs and please click agree or disagree with your opinion.
  </h4>
+
+<br>
+<br>
+<% @survey_song_for_eva.each do |video,song_id| %>
+<div id="video_show">
+<p> <%= raw(youtube_embed_small(video)) %> <br>
+<button type="button" class="btn btn-default"> <%= link_to "Agree", agree_survey_path(user_id: current_user.id, song_id: song_id, agreed: true),remote: true %> </button>
+<button type="button" class="btn btn-default"> <%= link_to "Disagree",agree_survey_path(user_id: current_user.id, song_id: song_id, agreed: false), remote: true %> </button>
+</p>
+</div>
+
+<% end %>
+
 <br>
 Thanks a lot for your cooperation. 
 <br>
 Best Regards,
 <br>
 Khine Zar
-<br>
-<br>
-<% @survey_song_for_eva.each do |video| %>
-<p><%= raw(youtube_embed_small(video)) %>
-<button type="button" class="btn btn-primary">Agree</button>
-<button type="button" class="btn btn-primary">Disagree</button>
-</p>
-<% end %>
+

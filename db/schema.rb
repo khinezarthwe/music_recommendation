@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220135036) do
+ActiveRecord::Schema.define(version: 20161231101222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,20 @@ ActiveRecord::Schema.define(version: 20161220135036) do
   add_index "songs", ["user_id", "created_at"], name: "index_songs_on_user_id_and_created_at", using: :btree
   add_index "songs", ["user_id"], name: "index_songs_on_user_id", using: :btree
 
+  create_table "survey_actions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "song_id"
+    t.boolean  "agreed"
+    t.boolean  "topic"
+    t.boolean  "genre"
+    t.boolean  "ncf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "survey_actions", ["song_id"], name: "index_survey_actions_on_song_id", using: :btree
+  add_index "survey_actions", ["user_id"], name: "index_survey_actions_on_user_id", using: :btree
+
   create_table "temp_recommenders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "song_id"
@@ -146,4 +160,6 @@ ActiveRecord::Schema.define(version: 20161220135036) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "songs", "users"
+  add_foreign_key "survey_actions", "songs"
+  add_foreign_key "survey_actions", "users"
 end

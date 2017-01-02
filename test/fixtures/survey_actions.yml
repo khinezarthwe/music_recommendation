@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id_id: 
+  song_id_id: 
+  agreed: false
+  topic: false
+  genre: false
+  ncf: false
+
+two:
+  user_id_id: 
+  song_id_id: 
+  agreed: false
+  topic: false
+  genre: false
+  ncf: false
