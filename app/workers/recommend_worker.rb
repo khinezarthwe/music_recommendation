@@ -45,8 +45,8 @@ class RecommendWorker
     topic_recommendations = c_recommender.predictions_for(userid,matrix_label: :users,with_scores: true)
     genre_recommendations = g_recommender.predictions_for(userid, matrix_label: :gusers, with_scores: true)
 
-    topic_recommendations = topic_recommendations.first(20).to_h
-    genre_recommendations = genre_recommendations.first(20).to_h
+    topic_recommendations = topic_recommendations.first(10).to_h
+    genre_recommendations = genre_recommendations.first(10).to_h
 
     existing_topic_recommendations = TempRecommender.where(:user_id=>userid)
     existing_genre_recommendations = GenreBasedRecommendation.where(:user_id=>userid)

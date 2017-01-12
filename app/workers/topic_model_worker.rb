@@ -27,7 +27,7 @@ class TopicModelWorker
 
     topic_recommendations = recommender.predictions_for(userid,matrix_label: :users,with_scores: true)
     
-    topic_recommendations = topic_recommendations.first(20).to_h
+    topic_recommendations = topic_recommendations.first(10).to_h
 
     existing_topic_recommendations = TempRecommender.where(:user_id=>userid)
     

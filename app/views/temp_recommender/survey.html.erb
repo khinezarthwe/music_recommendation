@@ -10,13 +10,15 @@
 <% @survey_song_for_eva.each do |video,song_id| %>
 <div id="video_show">
 <p> <%= raw(youtube_embed_small(video)) %> <br>
-<button type="button" class="btn btn-default"> <%= link_to "Agree", agree_survey_path(user_id: current_user.id, song_id: song_id, agreed: true),remote: true %> </button>
-<button type="button" class="btn btn-default"> <%= link_to "Disagree",agree_survey_path(user_id: current_user.id, song_id: song_id, agreed: false), remote: true %> </button>
+<button type="button" class="btn btn-default"> <%= link_to "Like", agree_survey_path(user_id: current_user.id, song_id: song_id, agreed: true),remote: true %> </button>
+<button type="button" class="btn btn-default"> <%= link_to "DisLike",agree_survey_path(user_id: current_user.id, song_id: song_id, agreed: false), remote: true %> </button>
 </p>
 </div>
 
 <% end %>
-
+<div class="row">
+<script>(function(e,t,n,c){var s,o,a;e.SMCX=e.SMCX||[],t.getElementById(c)||(s=t.getElementsByTagName(n),o=s[s.length-1],a=t.createElement(n),a.type="text/javascript",a.async=!0,a.id=c,a.src=["https:"===location.protocol?"https://":"http://","widget.surveymonkey.com/collect/website/js/kgsXbcEnbup2T4qWpLAFvKFFOMR2h8FFdeWea_2FP6acf_2BV61fHCa3_2BLCA9rMWGWnS.js"].join(""),o.parentNode.insertBefore(a,o))})(window,document,"script","smcx-sdk");</script><a style="font: 12px Helvetica, sans-serif; color: #999; text-decoration: none;" href=https://www.surveymonkey.com/mp/customer-satisfaction-surveys/> Create your own user feedback survey </a>
+</div>
 <br>
 Thanks a lot for your cooperation. 
 <br>

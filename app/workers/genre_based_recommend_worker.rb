@@ -26,7 +26,7 @@ class GenreBasedRecommendWorker
       recommender.add_to_matrix!(:genre_groups,k.to_s,v.map(&:to_s))
     end
     recommend_song = recommender.predictions_for(userid, matrix_label: :gusers, with_scores: true)
-    recommend_song = recommend_song.first(20).to_h
+    recommend_song = recommend_song.first(10).to_h
     existing_genre_recommendations = GenreBasedRecommendation.where(:user_id=>userid)
     # already_member = GenreBasedRecommendation.where(:user_id=>userid)
     # if already_member.blank? # create new recommend .nil ???? .blank???

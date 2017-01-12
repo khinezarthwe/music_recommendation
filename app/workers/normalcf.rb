@@ -21,7 +21,7 @@ class Normalcf
     nf_recommender.add_to_matrix!(:ncf_groups,rem_songid)
 
     nf_recommendations = nf_recommender.predictions_for(userid, matrix_label: :ncf_users, with_scores: true)
-    nf_recommendations = nf_recommendations.first(20).to_h
+    nf_recommendations = nf_recommendations.first(10).to_h
     p nf_recommendations
     
     exit_nf_recommendations = NcFrecommendation.where(:user_id=>userid)
