@@ -5,6 +5,10 @@ class SongsController < ApplicationController
 
   def index
     @songs = Song.paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.csv{ send_data @songs.to_csv, filename:"song-#{Date.today}.csv"}
+    end
   end
 
   def create

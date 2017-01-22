@@ -13,7 +13,17 @@ class Song < ActiveRecord::Base
 
   def self.search(search)
     where("artist_name LIKE ? OR song_name LIKE ? OR lyric LIKE ?","%#{search}%","%#{search}%","%#{search}%")
-  end    
+  end   
+  def self.to_csv
+    attributes = %w{id topic_num artist_name song_name lyric user_id video_link song_genre}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << user.attributes.values_at(*attributes)
+      end
+    end
+  end 
   def traingwithlda
     stop_word_list = CSV.read("db/stop_word_list.csv")
     topic_number = []

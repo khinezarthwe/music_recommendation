@@ -71,10 +71,17 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+def self.to_csv
+    attributes = %w{id name email age gender occupation}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
 
-
-
-  
+      all.each do |user|
+        csv << user.attributes.values_at(*attributes)
+      end
+    end
+  end
+ 
 
   private
   #convert email to all lower-case

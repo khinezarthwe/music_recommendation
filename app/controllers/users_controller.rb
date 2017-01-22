@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page]) 
+    respond_to do |format|
+      format.html
+      format.csv{ send_data @users.to_csv, filename:"user-#{Date.today}.csv"}
+    end
   end
   def new
     @user = User.new
