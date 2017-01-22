@@ -12,7 +12,7 @@ class Song < ActiveRecord::Base
   is_impressionable
 
   def self.search(search)
-    where("artist_name LIKE ? OR song_name LIKE ? OR lyric LIKE ?","%#{search}%","%#{search}%","%#{search}%")
+    where("artist_name ILIKE ? OR song_name ILIKE ? OR lyric ILIKE ?","%#{search}%","%#{search}%","%#{search}%")
   end   
   def self.to_csv
     attributes = %w{id topic_num artist_name song_name lyric user_id video_link song_genre}
