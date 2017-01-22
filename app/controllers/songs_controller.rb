@@ -4,7 +4,8 @@ class SongsController < ApplicationController
   impressionist :actions => [:show]
 
   def index
-    @songs = Song.paginate(page: params[:page])
+    #@songs = Song.paginate(page: params[:page])
+    @songs = Song.all
     respond_to do |format|
       format.html
       format.csv{ send_data @songs.to_csv, filename:"song-#{Date.today}.csv"}
