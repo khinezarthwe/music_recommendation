@@ -25,3 +25,4 @@
 /config/puma.rb
 # Ignore application configuration
 /config/application.yml
+/data_to_csv.rb
