@@ -4,19 +4,22 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page]) 
+    @users = User.paginate(page: params[:page],per_page: 10) 
     respond_to do |format|
       format.html
       format.csv{ send_data @users.to_csv, filename:"user-#{Date.today}.csv"}
     end
   end
+
   def new
     @user = User.new
   end
+
   def show
     @user = User.find(params[:id])
-    @songs = @user.songs.paginate(page: params[:page])
+    @user_songs = @user.songs.paginate(page: params[:page],per_page: 10)
   end
+
   def create
     @user = User.new(user_params)
     if @user.save

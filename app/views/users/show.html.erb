@@ -27,9 +27,9 @@
     <% if @user.songs.any? %>
     <h3>Songs (<%= @user.songs.count %>)</h3>
     <ol class= "songs">
-      <%= render @songs %>
+      <%= render @user_songs %>
     </ol>
-    <%= will_paginate @songs %>
+    <%= will_paginate @user_songs %>
     <% end %>
   </div>
 </div>

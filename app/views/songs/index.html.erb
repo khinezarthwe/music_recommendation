@@ -1,5 +1,7 @@
 <% provide(:title, 'Songs') %>
 <h1>All Songs In this System</h1>
+<%= will_paginate %>
 <ul class="songs">
    <%= render @songs%>
 </ul>
+<%= will_paginate %>
